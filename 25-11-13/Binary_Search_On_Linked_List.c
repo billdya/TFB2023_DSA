@@ -34,14 +34,14 @@ TreeNode* findMin(TreeNode* root) {
     return root;
 }
 
-// Delete element
-TreeNode* delete(TreeNode* root, int value) {
+// Delete element - CHANGED FUNCTION NAME FROM 'delete' TO 'deleteNode'
+TreeNode* deleteNode(TreeNode* root, int value) {
     if (root == NULL) return root;
     
     if (value < root->data)
-        root->left = delete(root->left, value);
+        root->left = deleteNode(root->left, value);
     else if (value > root->data)
-        root->right = delete(root->right, value);
+        root->right = deleteNode(root->right, value);
     else {
         // Node with one child or no child
         if (root->left == NULL) {
@@ -57,14 +57,14 @@ TreeNode* delete(TreeNode* root, int value) {
         // Node with two children
         TreeNode* temp = findMin(root->right);
         root->data = temp->data;
-        root->right = delete(root->right, temp->data);
+        root->right = deleteNode(root->right, temp->data);
     }
     return root;
 }
 
-// Update element
+// Update element - CHANGED TO USE 'deleteNode'
 void update(TreeNode* root, int oldValue, int newValue) {
-    root = delete(root, oldValue);
+    root = deleteNode(root, oldValue);
     root = insert(root, newValue);
 }
 
@@ -118,8 +118,8 @@ int main() {
     postorder(root);
     printf("\n");
     
-    // Delete element
-    root = delete(root, 20);
+    // Delete element - CHANGED TO USE 'deleteNode'
+    root = deleteNode(root, 20);
     printf("After deleting 20: ");
     inorder(root);
     printf("\n");
