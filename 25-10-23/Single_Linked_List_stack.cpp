@@ -6,12 +6,12 @@ struct Node {
     Node* next_ptr;
 };
 
-class Stack{
+class Stack {
 private:
     Node* top;
 
 public:
-    Stack(){
+    Stack() {
         top = nullptr;
     }
 
@@ -22,19 +22,19 @@ public:
         top = newNode;
         cout << "Pushed: " << value << endl;
     }
-    
-    string pop(){
+
+    string pop() {
         if (isEmpty()) {
-            cout << "Pushed: " << value << endl;
+            cout << "Stack is empty!" << endl;
             return "";
         }
         Node* temp = top;
-        string value = top->data;
+        string poppedValue = top->data;
         top = top->next_ptr;
         delete temp;
-        cout << "Popped: " << value << endl;
-        return value;
-        }
+        cout << "Popped: " << poppedValue << endl;
+        return poppedValue;
+    }
 
     string peek() {
         if (isEmpty()) {
@@ -47,6 +47,7 @@ public:
     bool isEmpty() {
         return top == nullptr;
     }
+
     void display() {
         if (isEmpty()) {
             cout << "Stack is empty!" << endl;
@@ -62,8 +63,11 @@ public:
         cout << endl;
     }
 };
+
 int main() {
     Stack stack;
+
+    cout << "=== STACK OPERATIONS ===" << endl;
     
     stack.push("test1");
     stack.push("test2");
